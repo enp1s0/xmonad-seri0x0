@@ -1,0 +1,37 @@
+-- -*- mode:haskell -*-
+Config { font = "xft:Ricty:size=9"
+       , bgColor = "#1a1e1b"
+       , fgColor = "#676767"
+       , position = Top
+       , overrideRedirect = False
+       , lowerOnStart = False
+       , commands = [ 
+                    Run MultiCpu        [ "-t"       , "CPU: <total0>.<total1>.<total2>.<total3>"
+                                          , "-L"       , "40"
+                                          , "-H"       , "85"
+                                          , "--normal" , "#d3d7cf"
+                                          , "--high"   , "#c16666"
+                                          ] 50
+
+                    , Run Memory          [ "-t"       , "Mem: <usedratio>%"
+                                          , "-L"       , "40"
+                                          , "-H"       , "90"
+                                          , "--normal" , "#d3d7cf"
+                                          , "--high"   , "#c16666"
+                                          ] 10
+                    , Run Date "%a %m/%d %H:%M" "date" 10
+                    , Run StdinReader
+					, Run BatteryP ["BAT0"]
+					  ["-t", "<acstatus><watts> (<left>%)",
+					   "-L", "10", "-H", "80", "-p", "3",
+					   "--", "-O", "<fc=green>On</fc> - ", "-i", "",
+					   "-L", "-15", "-H", "-5",
+					   "-l", "red", "-m", "blue", "-h", "green"]
+					  30
+					, Run Com "/home/mutsuki/.xmonad/wifi-shell.sh" [] "wifi" 30
+					, Run Com "/home/mutsuki/.xmonad/fcitx-shell.sh" [] "fcitx" 5
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{%multicpu% >> %memory% >> %battery% >> %wifi% >> %fcitx% <fc=#c7a273>%date%</fc>  "
+       }
