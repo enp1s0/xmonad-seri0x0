@@ -36,8 +36,13 @@ myManageHook = composeAll
     manageHook defaultConfig
 
 myAdditionalKeys = [
-    ((mod4Mask .|. shiftMask, xK_w), spawn "chromium"),
+    ((mod4Mask .|. shiftMask, xK_w), spawn "chromium --process-per-site"),
     ((mod4Mask .|. shiftMask, xK_f), spawn "firefox"),
     ((mod4Mask .|. shiftMask, xK_s), spawn "slack"),
+    ((mod4Mask .|. shiftMask, xK_d), spawn "dmenu_run"),
+    ((mod4Mask .|. shiftMask, xK_t), spawn "urxvt"),
+    ((mod4Mask .|. shiftMask, xK_g), spawn "gimp"),
+    ((mod4Mask .|. shiftMask, xK_i), spawn "inkscape"),
+    ((mod4Mask .|. shiftMask, xK_m), spawn "/usr/local/mendeley/bin/mendeleydesktop"),
     ((mod4Mask .|. shiftMask, xK_n), spawn "simplenote")
     ]
