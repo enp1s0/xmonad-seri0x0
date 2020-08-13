@@ -5,6 +5,7 @@ Config { font = "xft:Ricty:size=9"
        , position = Top
        , overrideRedirect = False
        , lowerOnStart = False
+       , allDesktops = True
        , commands = [ 
                     Run MultiCpu        [ "-t"       , "CPU: <total0>.<total1>.<total2>.<total3>.<total4>.<total5>.<total6>.<total7>"
                                           , "-L"       , "40"
