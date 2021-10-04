@@ -16,7 +16,7 @@ main = do
         , borderWidth = 3
         , normalBorderColor = "#11103B"
         , focusedBorderColor = "#D4D4D6"
-        , startupHook = spawn "feh --bg-scale ~/images/xmonad.jpg"
+        , startupHook = spawn "feh --bg-scale ~/images/iceberg.png"
         , manageHook = myManageHook
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
@@ -36,7 +36,8 @@ myManageHook = composeAll
     manageHook defaultConfig
 
 myAdditionalKeys = [
-    ((mod4Mask .|. shiftMask, xK_w), spawn "chromium --process-per-site"),
+    ((mod4Mask .|. shiftMask, xK_w), spawn "google-chrome-stable --process-per-site"),
+    ((mod4Mask .|. shiftMask, xK_e), spawn "google-chrome-stable --process-per-site --incognito"),
     ((mod4Mask .|. shiftMask, xK_f), spawn "firefox"),
     ((mod4Mask .|. shiftMask, xK_s), spawn "slack"),
     ((mod4Mask .|. shiftMask, xK_d), spawn "dmenu_run"),
