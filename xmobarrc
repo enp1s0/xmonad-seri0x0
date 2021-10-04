@@ -7,7 +7,14 @@ Config { font = "xft:Ricty:size=9"
        , lowerOnStart = False
        , allDesktops = True
        , commands = [ 
-                    Run MultiCpu        [ "-t"       , "CPU: <total0>.<total1>.<total2>.<total3>.<total4>.<total5>.<total6>.<total7>"
+                    Run DynNetwork      [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
+                                          , "--Low"      , "100000"       -- units: B/s
+                                          , "--High"     , "500000"       -- units: B/s
+                                          , "--low"      , "darkgreen"
+                                          , "--normal"   , "darkorange"
+                                          , "--high"     , "darkred"
+                                          ] 10
+                    , Run MultiCpu        [ "-t"       , "CPU: <total0>.<total1>.<total2>.<total3>.<total4>.<total5>.<total6>.<total7>"
                                           , "-L"       , "40"
                                           , "-H"       , "85"
                                           , "--normal" , "#d3d7cf"
@@ -34,5 +41,5 @@ Config { font = "xft:Ricty:size=9"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{%multicpu% >> %memory% >> %battery% >> %wifi% >> %fcitx% <fc=#c7a273>%date%</fc>  "
+       , template = " %StdinReader% }{%dynnetwork% >> %multicpu% >> %memory% >> %battery% >> %wifi% >> %fcitx% <fc=#c7a273>%date%</fc>  "
        }
