@@ -29,17 +29,19 @@ Config { font = "xft:Ricty:size=9"
                                           ] 10
                     , Run Date "%a %m/%d %H:%M" "date" 10
                     , Run StdinReader
-					, Run BatteryP ["BAT0"]
+					, Run BatteryP ["BAT1"]
 					  ["-t", "<acstatus><watts> (<left>%)",
 					   "-L", "10", "-H", "80", "-p", "3",
 					   "--", "-O", "<fc=green>On</fc> - ", "-i", "",
 					   "-L", "-15", "-H", "-5",
 					   "-l", "red", "-m", "blue", "-h", "green"]
 					  30
-					, Run Com "/home/mutsuki/.xmonad/wifi-shell.sh" [] "wifi" 30
-					, Run Com "/home/mutsuki/.xmonad/fcitx-shell.sh" [] "fcitx" 5
+					, Run Com "/home/tsuki/.xmonad/wifi-shell.sh" [] "wifi" 30
+					, Run Com "/home/tsuki/.xmonad/fcitx-shell.sh" [] "fcitx" 5
+					, Run Com "/home/tsuki/.xmonad/sound-volume.sh" [] "volume" 5
+					, Run Com "/home/tsuki/.xmonad/sound-mute.sh" [] "mute" 5
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{%dynnetwork% >> %multicpu% >> %memory% >> %battery% >> %wifi% >> %fcitx% <fc=#c7a273>%date%</fc>  "
+       , template = " %StdinReader% }{Sound[<fc=#37a233>%mute%</fc>](%volume%) >> %dynnetwork% >> %multicpu% >> %memory% >> %battery% >> %wifi% >> %fcitx% <fc=#c7a273>%date%</fc>  "
        }
