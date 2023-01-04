@@ -1,3 +1,4 @@
+import Data.Default
 import XMonad
 import qualified XMonad.StackSet as W
 import XMonad.Hooks.DynamicLog
@@ -10,8 +11,8 @@ import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
 main = do
-    xmproc <- spawnPipe "xmobar /home/tsuki/.xmonad/xmobarrc"
-    xmonad $ defaultConfig
+    xmproc <- spawnPipe "xmobar /home/mutsuki/.xmonad/xmobarrc"
+    xmonad $ docks $ def
         { terminal    = "alacritty"
         , modMask     = mod4Mask
         , borderWidth = 1
@@ -19,12 +20,11 @@ main = do
         , focusedBorderColor = "#D4D4D6"
         , startupHook = spawn "feh --bg-scale ~/images/iceberg.png"
         , manageHook = myManageHook
-        , layoutHook = avoidStruts $ layoutHook defaultConfig
+        , layoutHook = avoidStruts $ layoutHook def
         , logHook = dynamicLogWithPP xmobarPP
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
-        , handleEventHook = docksEventHook
         } `additionalKeys` myAdditionalKeys
 
 myManageHook = composeAll
@@ -34,7 +34,7 @@ myManageHook = composeAll
     <+>
     manageDocks
     <+>
-    manageHook defaultConfig
+    manageHook def
 
 myAdditionalKeys = [
     ((mod4Mask .|. shiftMask, xK_w), spawn "google-chrome-stable --process-per-site"),
